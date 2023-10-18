@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Dashboard</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f9f9f9;
+		}
+		
+		h1, h2 {
+			color: #333;
+			text-align: center;
+			margin-top: 20px;
+		}
+		
+		div {
+			border: 1px solid #ddd;
+			padding: 10px;
+			margin: 10px auto;
+			max-width: 600px;
+			background-color: #fff;
+		}
+		
+		button {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin-top: 20px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+		
+		button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<h1>Welcome to My Dashboard</h1>
+	
+	<!-- Display user information -->
+	<div>
+		<h2>User Information</h2>
+		<p><strong>Name:</strong> {{ user.name }}</p>
+		<p><strong>Email:</strong> {{ user.email }}</p>
+	</div>
+	
+	<!-- Display saved output -->
+	<div>
+		<h2>Saved Output</h2>
+		{% if saved_output %}
+			<p>{{ saved_output }}</p>
+		{% else %}
+			<p>No saved output yet.</p>
+		{% endif %}
+	</div>
+	
+	<!-- Logout button -->
+	<form action="/logout" method="post">
+		<button type="submit">Logout</button>
+	</form>
+</body>
+</html>
+

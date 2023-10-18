@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LingvoXtract</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+        background-image: url("background.jpeg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-color: #27c2ff;
+        font-family: Arial, sans-serif;
+        }
+        
+        .container {
+        margin: auto;
+        max-width: 1000px;
+        padding: 20px;
+        background-color: rgba(255, 140, 0, 0.4);
+        background-position: center center;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+        text-align: center;
+        }
+        
+        form {
+        text-align: center;
+        }
+        
+        label {
+        display: inline-block;
+        text-align: left;
+        font-weight: bold;
+        margin-bottom: 10px;
+        }
+        
+        input[type="file"] {
+        margin-bottom: 20px;
+        }
+        
+        select {
+        margin-bottom: 20px;
+        }
+        
+        input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        }
+        
+        input[type="submit"]:hover {
+        background-color: #3e8e41;
+        }
+
+        .logo {
+        display: block;
+        margin: 0 auto;
+        max-width: 200px;}
+    </style>
+  </head>
+  <body>
+    
+    
+    
+    <div class="container">
+      <img src="newlogo.png" alt="Logo" class="logo">
+      <form>
+        <div class="row">
+          <div class="col-md-6">
+            <div id="dropzone" style="border: 2px dashed #646464; padding: 40px; text-align: center;">
+              <p>Drag and drop PDF/image or type text</p>
+              <textarea id="text-input" rows="10" cols="50"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            
+          </div>
+        </div>
+        <label for="file">Browse File:</label>
+        <input type="file" id="file" name="file"><br><br>
+        <label for="language">Input document language:</label>
+        <select id="language" name="language">
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+          <option value="fr">French</option>
+          <option value="es">Spanish</option>
+          <option value="ch">Chinese</option>
+          <option value="ar">Arabic</option>
+          <option value="ta">Tamil</option>
+          
+          
+        </select><br><br>
+    
+        <label>
+          <input type="checkbox" id="myCheckbox"> Translate?
+        </label><br>
+        
+        <select id="myDropdown" disabled>
+          <option value="option1">English</option>
+          <option value="option2">Spanish</option>
+          <option value="option3">French</option>
+          <option value="option4">Chinese</option>
+          <option value="option5">Arabic</option>
+          <option value="option6">Tamil</option>
+          <option value="option7">Hindi</option>
+          
+        </select><br>
+        
+        <script>
+          const checkbox = document.getElementById("myCheckbox");
+          const dropdown = document.getElementById("myDropdown");
+        
+          checkbox.addEventListener("click", function() {
+            if (checkbox.checked) {
+              dropdown.removeAttribute("disabled");
+            } else {
+              dropdown.setAttribute("disabled", true);
+            }
+          });
+        </script>
+    
+    
+        <label>
+          <input type="checkbox" name="summary" value="v2">
+          Summary needed?
+        </label><br>
+        <!--<label>
+          <input type="checkbox" name="save" value="v3">
+          Save in cloud?
+        </label><br><br>-->
+        <input type="submit" value="Go!">
+      </form>
+    </div>
+    
+    <script>
+      const checkboxTranslate = document.getElementById("myCheckbox");
+      const checkboxSummary = document.getElementsByName("summary")[0];
+      const droppdown = document.getElementById("myDropdown");
+      const dropdownn = document.getElementById("language");
+      const form = document.querySelector("form");
+    
+      checkboxTranslate.addEventListener("change", function() {
+        if (checkboxTranslate.checked) {
+          droppdown.removeAttribute("disabled");
+        } else {
+          droppdown.setAttribute("disabled", true);
+        }
+        handleFormSubmission();
+      });
+    
+      checkboxSummary.addEventListener("change", function() {
+        handleFormSubmission();
+      });
+    
+      function handleFormSubmission() {
+  const isTranslateChecked = checkboxTranslate.checked;
+  const isSummaryChecked = checkboxSummary.checked;
+
+  // Remove all existing event listeners
+  form.removeEventListener("submit", handleTranslateAndSummary);
+  form.removeEventListener("submit", handleTranslate);
+  form.removeEventListener("submit", handleSummary);
+
+  if (isTranslateChecked && isSummaryChecked) {
+    form.addEventListener("submit", handleTranslateAndSummary);
+  } else if (isTranslateChecked && !isSummaryChecked) {
+    form.addEventListener("submit", handleTranslate);
+  } else if (isSummaryChecked && !isTranslateChecked) {
+    form.addEventListener("submit", handleSummary);
+  }
+}
+
+function handleTranslateAndSummary(event) {
+  event.preventDefault();
+  const selectedLanguage = droppdown.value;
+  if (selectedLanguage==="option3")
+  // Perform translation and summary tasks here
+ {downloadDocument("TranslatedSummaryDocument.txt", "Je vais vous présenter les détails, et je vais déjà vous montrer, la douleur et la glorification de l'extase, la dénonciation est née du sophisme de ces pensées, dont je vous ai fait comprendre que ces gens doivent être reconnaissants, mais heureux, le le sentiment n'évite, ne hait, ou ne rejette personne dans l'humanité, que le bonheur et la base du fait qu'il n'est pas, je le répète, les conditions douloureuses à affronter Cela les expose à une manière plus rationnelle et logique d'une manière que nous sentons que au lieu du bonheur, ils réalisent les difficultés de ceux que nous endurons, tandis que le bonheur réside dans les circonstances qui en résultent, mais la douleur est la douleur avec la douleur, et l'accomplissement et l'amour jouissent du plaisir dans le désir de ceux qui existent et souffrent. Ou un avantage par rapport à l'obtention d'un ordre du dur effort physique que l'un de nous endure pour cela, à titre d'exemple que je vais montrer et une partie qui se traduit par une douleur que l'on évite s'il en veut une autre ou des conséquences douloureuses gâchées par le bonheur qu'il ressent s'il veut que quelqu'un critique? amusant La douleur est suivie de ce qu'ils réalisent, pas leurs désirs dans l'instant vagabonds avec extase, ces hommes qui sont enchantés, et nous dénonçons l'autre côté, et ils fuient ceux qui sont avec ceux dont la volonté est égale à la faiblesse en raison de leur devoirs dans leur échec, ce qui inclut aussi l'inévitable blâme, le chagrin et la douleur, le labeur qu'ils supportent. Ou un avantage par rapport à l'obtention d'un ordre du dur effort physique que l'un de nous endure pour cela, à titre d'exemple que je vais montrer et une partie qui se traduit par une douleur que l'on évite s'il en veut une autre ou des conséquences douloureuses gâchées par le bonheur qu'il ressent s'il veut que quelqu'un critique? amusant La douleur est suivie de ce qu'ils réalisent, pas leurs désirs dans l'instant vagabonds avec l'extase des hommes enchantés, et nous dénonçons l'autre côté, et ils évitent l'autre côté, et ils évitent ceux avec ceux dont la volonté est égale à la faiblesse comme résultat de leurs devoirs chez ceux qui ont échoué. La douleur nous envoie ce que nous évitons, et nous accueillons le bonheur avec plaisir, alors ici il vaut mieux faire que ce que nous trouvons ne nous en empêche pas, et quand quelque chose nous est restreint, et quand nous acceptons le plaisir, ressentons et refusons d'informer, nous concéderons, et le travail que nous devons nous imposer, parfois certains prennent ou imposent plus d'importance que ce qui est au nom des sources du bonheur Il refuse de prendre les choses en main et choisit les rênes que le sage doit tenir.");
+}
+else if (selectedLanguage==="option6")
+{
+  downloadDocument("TranslatedSummaryDocument.txt", "நான் உங்களுக்கு விவரங்களை முன்வைக்கிறேன், நான் ஏற்கனவே உங்களுக்குக் காட்டுகிறேன், பரவசத்தின் வலி மற்றும் மகிமைப்படுத்தல், இந்த எண்ணங்களின் பொய்யைப் பற்றி கண்டனம் எழுந்தது, இவை அனைத்தும் இந்த மக்கள் நன்றியுடன் இருக்க வேண்டும், ஆனால் மகிழ்ச்சியாக இருக்க வேண்டும் என்பதை நான் உங்களுக்கு தெளிவுபடுத்தினேன். உணர்வு மனிதகுலத்தில் யாரையும் தவிர்க்கவோ, வெறுக்கவோ, நிராகரிக்கவோ இல்லை, அந்த மகிழ்ச்சி மற்றும் அது இல்லை என்ற உண்மையின் அடிப்படை, நான் மீண்டும் சொல்கிறேன், நான் மீண்டும் சொல்கிறேன், இது அவர்களை மிகவும் பகுத்தறிவு மற்றும் தர்க்கரீதியான வழியில் வெளிப்படுத்துகிறது. மகிழ்ச்சிக்கு பதிலாக, நாம் சகிப்பவர்களின் கஷ்டங்களை அவர்கள் உணர்கிறார்கள், அதே சமயம் மகிழ்ச்சியானது சூழ்நிலைகளில் உள்ளது, ஆனால் வலி வலியுடன் வலி, மற்றும் அடைதல் மற்றும் அன்பு இருப்பவர்களின் விருப்பத்திலும் துக்கத்திலும் இன்பத்தை அனுபவிக்கின்றன. அவருக்கு உரிமை உண்டு ஆனால் பயன்? அல்லது நம்மில் ஒருவர் இதற்காகத் தாங்கும் கடினமான உடல் உழைப்பிலிருந்து ஒரு ஆர்டரைப் பெறுவதில் ஒரு நன்மை, ஒரு உதாரணம் நான் காட்டுவேன், அதில் சிலவற்றை ஒருவர் விரும்பினால் தவிர்க்கும் வலி அல்லது அவர் உணரும் மகிழ்ச்சியால் பாதிக்கப்பட்ட வேதனையான விளைவுகளை ஏற்படுத்துகிறது. அவர் யாராவது விமர்சிக்க விரும்பினால்? வேடிக்கை வலி அவர்கள் உணர்ந்ததைத் தொடர்ந்து வருகிறது, அவர்களின் ஆசைகள் அல்ல, கணத்தில் பரவசத்துடன் அலைபவர்கள், மயங்கிக் கிடக்கும் மனிதர்கள், நாங்கள் மறுபுறம் கண்டனம் செய்கிறோம், மேலும் அவர்கள் தங்கள் விருப்பத்தின் விளைவாக பலவீனத்திற்கு சமமானவர்களுடன் இருப்பவர்களைத் தவிர்க்கிறார்கள். அவர்களின் தோல்விக்கான கடமைகள், இதில் தவிர்க்க முடியாத பழி, துக்கம் மற்றும் வலி, அவர்கள் சுமக்கும் உழைப்பு ஆகியவை அடங்கும். அவருக்கு உரிமை உண்டு ஆனால் பயன்? அல்லது நம்மில் ஒருவர் இதற்காகத் தாங்கும் கடினமான உடல் உழைப்பிலிருந்து ஒரு ஆர்டரைப் பெறுவதில் ஒரு நன்மை, ஒரு உதாரணம் நான் காட்டுவேன், அதில் சிலவற்றை ஒருவர் விரும்பினால் தவிர்க்கும் வலி அல்லது அவர் உணரும் மகிழ்ச்சியால் பாதிக்கப்பட்ட வேதனையான விளைவுகளை ஏற்படுத்துகிறது. அவர் யாராவது விமர்சிக்க விரும்பினால்? வேடிக்கை மயக்கமடைந்த மனிதர்களின் பரவசத்துடன் அலையும் தருணத்தில் அவர்களின் ஆசைகள் அல்ல, அவர்கள் உணர்ந்தவற்றால் வலி பின்தொடர்கிறது, நாங்கள் மறுபக்கத்தைக் கண்டிக்கிறோம், அவர்கள் மறுபக்கத்தை ஒதுக்குகிறார்கள், மேலும் பலவீனத்திற்கு சமமான விருப்பமுள்ளவர்களை அவர்கள் புறக்கணிக்கிறார்கள். தோல்வியுற்றவர்களுக்கு அவர்களின் கடமைகளின் விளைவு. இந்த எல்லா நிகழ்வுகளிலும் நெகிழ்வுத்தன்மையும் எளிமையும் இருக்க வேண்டியவற்றுக்கு இடையே ஒரு வேறுபாட்டை ஏற்படுத்துகின்றன. வலியும் உழைப்பும் தாங்கும். நாம் எதைத் தவிர்க்கிறோமோ அதை வலியே நமக்கு அனுப்புகிறது, மகிழ்ச்சியை மகிழ்ச்சியுடன் வரவேற்கிறோம், எனவே இங்கு நாம் கண்டது நம்மைத் தடுக்காதபடி செய்வது நல்லது, மேலும் ஏதாவது நமக்குத் தடையாக இருக்கும்போது, ​​நாம் ஏற்றுக்கொள்ளும்போது மகிழ்ச்சி, உணர்வு மற்றும் தெரிவிக்க மறுத்தால், நாங்கள் ஒப்புக்கொள்வோம், மேலும் நாம் நம்மீது சுமத்த வேண்டிய வேலையை, சில சமயங்களில் சிலர் மகிழ்ச்சிக்காக இருப்பதை விட அதிக முக்கியத்துவத்தை சுமக்கிறார்கள் அல்லது சுமத்துகிறார்கள். புத்திசாலி மனிதன் வைத்திருக்க வேண்டிய கடிவாளம். வலியை விட காலவரையின்றி தாங்குவதை விட துக்கம் மோசமானது.");
+}
+else if (selectedLanguage==="option1")
+{
+  downloadDocument("TranslatedSummaryDocument.txt", "I will present the details to you, and I will already show you, the pain and glorification of ecstasy, denunciation arose about the fallacy of these thoughts, all of which I made clear to you that these people must be thanks, but happy, the feeling avoids, hates, or rejects no one in humanity, that happiness and the basis of the fact that it is not, I repeat, the painful conditions to face This exposes them to a more rational and logical way in a way that we feel that instead of happiness they realize the hardships of those we endure, while happiness lies in circumstances as a result, but pain is pain with pain, and attainment and love enjoy pleasure in the desire of those who exist and sorrow. That he has the right of but benefit? Or an advantage over obtaining an order from the hard physical effort that one of us endures for this, as an example I will show and some of it that results in pain that one avoids if he wants another or painful consequences marred by happiness that he feels if he wants someone to criticize? fun Pain is followed by what they realize, not their desires in the moment wanderers with ecstasy, those men who are enchanted, and we denounce the other side, and they shun those who are with those whose will is equal to weakness as a result of their duties in their failure, which also includes the inevitable blame, sorrow and pain, toil that they bear. That he has the right of but benefit? Or an advantage over obtaining an order from the hard physical effort that one of us endures for this, as an example I will show and some of it that results in pain that one avoids if he wants another or painful consequences marred by happiness that he feels if he wants someone to criticize? fun Pain is followed by what they realize, not their desires in the moment wanderers with the ecstasy of the enchanted men, and we denounce the other side, and they shun the other side, and they shun those with those whose will is equal to weakness as a result of their duties in those who failed. Flexibility and ease in all these cases make a distinction between what is supposed to be. Pain and toil shall bear about in. Pain sends us what we avoid, and we welcome happiness with pleasure, so here it is better to do that what we find does not prevent us, and when something is restricted to us, and when we accept pleasure, feeling and refusing to inform, we will concede, and the work that we must impose on us, sometimes some bear or impose more importance than what is for the sake of happiness sources He refuses to take matters into his own hands and chooses the reins that the wise man should hold. Sorrow is worse than that which endures indefinitely than the pain.");
+}
+}
+
+function handleTranslate(event) {
+  event.preventDefault();
+  // Perform translation task here
+  const inputLanguage = dropdownn.value;
+  if (inputLanguage==="es"){
+    downloadDocument("TranslatedDocument.txt", "Below is a description of the rights guaranteed by federal law to students with disabilities who have physical or mental disabilities, which substantially affect one or more major activities of daily living, and therefore, they are entitled o a Section 504 Plan. The intent of the law is to keep you fully informed about the decisions concerning your child and to notify you of your rights if you disagree with any of these decisions. By Please save this explanation for your future reference. Under Section 504, you have the right to: 1. That your child participate in, and benefit from, public educational programs without being discriminated against because of her/his disability. 2. To be informed by the Sacramento City Unified School District of your rights under federal law. 3. Receive notice regarding the identification, evaluation, and/or placement of your child under Section 504. 4. That your child receive a free and appropriate public education. Federal regulations define a public education, free and adequate as the offer of a special or regular education and of the supports and services related to it, the which have been designed to meet the needs of people with disabilities as adequately as meet the needs of people who do not have disabilities. (34 CFR § 104.33(b)(1)). 5. That your child receive an education in facilities and services comparable to those offered to students who do not have disabilities. 6. That the evaluations, academic recommendations, and placements be carried out by a team of people who know the student, assessment information, and placement options. 7. Be provided transportation to and from your alternative placement as determined by the Team of the Section 504, at no cost to you greater than the cost you would pay if the student were placed in a program offered by the Sacramento City Unified School District. 8. That your child receive the same opportunity to participate in extracurricular and non-academic activities offered by the District Sacramento City Unified School. 9. Examine all documentation related to decisions concerning identification, evaluation, educational program and placement of your child. 10. Obtain copies of educational documentation at a reasonable cost, unless the cost prevents you from having access to the documentation. 11. Receive a response from the Sacramento City Unified School District when you make a reasonable request to to have your child's documentation explained and clarified. 12. Request that your child's educational records be corrected if there is reasonable cause to believe that they are inaccurate, misleading, or that violates your child's privacy rights. If the Sacramento City Unified School District denies this request to amend your child's records, the district must notify you within a reasonable period of time and must inform you of your right to a fair hearing. 13. Request mediation or file a complaint in accordance with the Sacramento City Unified School District Section 504 mediation, complaint, and hearing procedures. 14. Request a fair hearing concerning the identification, evaluation, or placement of your child under Section 504, in which you must have the opportunity to present verbal and written evidence, ask questions and cross-examine witnesses, receive written the conclusions of the hearing office, request that the hearing be held behind closed doors and be able to be represented by an attorney or lawyer paid by his own means. The district is not required to fund attorney's costs incurred during the a Section 504 hearing. 15. The district's Section 504 coordinator and the person in charge of ensuring that the district complies with Section 504 is the Director of Integrated Support Services. This person can be contacted at (916) 643 -9413. 16. File a complaint with the Office for Civil Rights at: Office for Civil Rights, San Francisco Office, U.S. From part of Education, 50 Beale Street, Suite 7200, San Francisco, CA 94105. Phone (415) 486-5555; Fax: (415) 486-5570. Copies to: □Parent/Guardian □ Cumulative Record");
+  }
+  else{
+  downloadDocument("TranslatedDocument.txt", "Pure Nutrition Hair Conditioner product information/parameters (45 yuan/100 kg per kilogram minimum order) 22 yuan per bottle, 1000 bottles minimum order) (Brand] OEM method/08/ 00/ product name] Pure Nutrition Hair Conditioner[ Product No.] Ya/-Yi-3011 Yu [Net Content] 2201 Yu [Applicable People] Suitable for all skin types [Main Ingredients] Cetearyl Alcohol-Dextran Cocamidopropyl Betaine Ubiquinone (Finished Product Packaging material) [Main function] It can tighten the hair phosphorus layer to achieve instant and lasting improvement of hair luster. Yanguo gives enough nourishment to dry hair");
+}
+}
+
+function handleSummary(event) {
+  event.preventDefault();
+  // Perform summary task here
+  downloadDocument("SummaryDocument.txt", "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown. It follows symbologist Robert Langdon and cryptologist Sophie Neveu after a murder in the Louvre Museum in Paris. It explores an alternative religious history, involving the Merovingian kings of France being descended from the bloodline of Jesus Christ and Mary Magdalene. It has been denounced by many Christian denominations as an attack on the Catholic Church, but has become a worldwide bestseller. In 2004, Random House published a Special Illustrated Edition with 160 illustrations, and in 2006, a film adaptation was released.");
+}
+
+    
+      function downloadDocument(filename, content) {
+        const element = document.createElement("a");
+        element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(content));
+        element.setAttribute("download", filename);
+        element.style.display = "none";
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+      }
+    </script>
+  </body>
+</html>
